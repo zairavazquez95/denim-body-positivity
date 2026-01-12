@@ -4,11 +4,9 @@ import time
 from scipy.stats import pearsonr
 from pytrends.request import TrendReq
 
-# 1. CONFIGURACIÓN DE CONEXIÓN
-# Añadimos parámetros de reintento para ser más resistentes a los bloqueos
+
 pytrends = TrendReq(hl='es-MX', tz=360, retries=5, backoff_factor=0.5)
 
-# El set de datos para tu tesis de Style Signals
 keywords = [
     "baggy jeans", 
     "skinny jeans", 
@@ -35,7 +33,6 @@ def fetch_all_signals(kw_list):
                 if not df.empty:
                     all_series.append(df[kw])
                     success = True
-                    # Pausa de 10 segundos entre palabras clave para no alertar a Google
                     time.sleep(10) 
                 else:
                     print(f"⚠️ No hay datos suficientes para: {kw}")
@@ -50,17 +47,13 @@ def fetch_all_signals(kw_list):
         return pd.DataFrame()
     return pd.concat(all_series, axis=1)
 
-# --- INICIO DEL PROCESO ---
 df_raw = fetch_all_signals(keywords)
 
 if not df_raw.empty:
-    # 2. PROCESAMIENTO EDITORIAL
-    # Media móvil de 12 semanas para una curva suave y profesional
+
     df_smooth = df_raw.rolling(window=12).mean().dropna()
-    # Normalización 0-100 para comparar peras con manzanas
     norm = (df_smooth - df_smooth.min()) / (df_smooth.max() - df_smooth.min()) * 100
 
-    # 3. INTERPRETACIÓN AUTOMÁTICA DE CORRELACIONES
     corr_matrix = norm.corr()
     
     print("\n" + "="*60)
@@ -74,7 +67,6 @@ if not df_raw.empty:
         if r < -0.3: return "CORRELACIÓN INVERSA MODERADA"
         return "SIN CORRELACIÓN CLARA"
 
-    # Definimos las tesis de tu reporte
     tesis = [
         ("skinny jeans", "ozempic", "Skinny Jeans vs. Ozempic"),
         ("ozempic", "body positivity", "Ozempic vs. Body Positivity"),
@@ -88,12 +80,10 @@ if not df_raw.empty:
             print(f"▶ {titulo}:")
             print(f"   {interpretar(r)} | Coeficiente r = {r:.2f}\n")
 
-    # 4. VISUALIZACIÓN "STYLE SIGNALS"
     plt.style.use('bmh')
     fig, ax = plt.subplots(figsize=(15, 9), facecolor='#FDFCF9')
     ax.set_facecolor('#FDFCF9')
 
-    # Paleta de colores editorial
     colores = {
         'baggy jeans': '#2C3E50', 'skinny jeans': '#7F8C8D', 
         'low rise jeans': '#F1C40F', 'body positivity': '#E74C3C', 
@@ -110,13 +100,11 @@ if not df_raw.empty:
                 alpha=1.0 if es_principal else 0.5,
                 linestyle='-' if es_principal else '--')
 
-    # Estética del Gráfico
     ax.set_title("STYLE SIGNALS: cuerpo y moda (2019-2026)", 
                  fontsize=20, fontweight='bold', pad=30, color='#2C3E50', font='Playfair Display')
     ax.set_ylabel("Interés Relativo Normalizado (0-100)", fontsize=12)
     ax.legend(loc='upper left', frameon=False, ncol=2)
     
-    # Limpieza visual
     ax.spines['top'].set_visible(False)
     ax.spines['right'].set_visible(False)
     
@@ -127,11 +115,10 @@ if not df_raw.empty:
     print("Chart saved as fashion_trends_chart.png")
     plt.show()
 
-    # Exportación
     norm.to_csv('style_signals_final_report.csv')
-    print("✅ Proceso terminado. Gráfica generada y datos guardados en CSV.")
+    print("Proceso terminado. Gráfica generada y datos guardados en CSV.")
     
 
 else:
-    print("❌ No se pudo generar el reporte. Verifica tu conexión o intenta con menos keywords.")
+    print("No se pudo generar el reporte. Verifica tu conexión o intenta con menos keywords.")
  
