@@ -5,8 +5,7 @@
 > **"Can we predict the silhouette of next season's denim by analyzing the search volume of pharmaceutical weight loss?"**
 
 ## OUTCOME: The Data Visualization
-![Style Signals Chart](<img width="1158" height="643" alt="bodypostivity - denim" src="https://github.com/user-attachments/assets/b3123066-c6be-4191-bdd9-769a9023fc81" />
-)
+<img width="1158" height="643" alt="bodypostivity - denim" src="https://github.com/user-attachments/assets/08446167-d30c-4392-85d1-382639ec11a6" />
 *Figure 1: Normalized search interest (2019–2026) showing the inverse correlation between societal acceptance (Body Positivity) and medicalized thinness (Ozempic).*
 
 ## Project Overview
@@ -32,8 +31,3 @@ This tool was built using a custom Python script designed to handle unstable API
 * **Normalization:** All datasets were scaled (0-100) to allow for relative comparison between high-volume terms (like "Jeans") and niche cultural terms (like "Pilates Aesthetic").
 * **Statistical Validation:** Used `scipy.stats.pearsonr` to calculate correlation coefficients and p-values to distinguish between coincidence and correlation.
 
-## 💻 Code Structure
-```python
-# Core logic snippet: Normalization for comparative analysis
-df_smooth = df_raw.rolling(window=12).mean().dropna()
-norm = (df_smooth - df_smooth.min()) / (df_smooth.max() - df_smooth.min()) * 100
