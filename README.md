@@ -24,7 +24,7 @@ The data reveals a stark "Cultural Crossing" event in late 2023:
     While **Baggy Jeans** dominated the "Body Positivity" era (2020–2023), they have plateaued. Meanwhile, **Low Rise Jeans** (Yellow) are steadily climbing, mirroring the "thin" signals. Most notably, **Skinny Jeans** (Light Grey), which crashed during the pandemic, show early signs of a "micro-trend" recovery in late 2025.
 
 ## Technical Methodology
-This tool was built using a custom Python script designed to handle unstable API endpoints and normalize disparate data sets.
+This was built using a custom Python script designed to handle unstable API endpoints and normalize disparate data sets.
 
 * **Data Source:** Google Trends API (via `pytrends`).
 * **Smoothing:** Applied a 12-week rolling average to eliminate weekly volatility and reveal macro-trends.
