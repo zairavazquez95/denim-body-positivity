@@ -6,7 +6,7 @@
 
 ## OUTCOME: The Data Visualization
 <img width="1158" height="643" alt="bodypostivity - denim" src="https://github.com/user-attachments/assets/08446167-d30c-4392-85d1-382639ec11a6" />
-*Figure 1: Normalized search interest (2019–2026) showing the inverse correlation between societal acceptance (Body Positivity) and medicalized thinness (Ozempic).*
+*Figure 1: Normalized search interest (2020–2026) showing the inverse correlation between societal acceptance (Body Positivity) and medicalized thinness (Ozempic).*
 
 ## Project Overview
 This project uses Python to quantify a major cultural shift in the fashion and wellness industries. By analyzing Google Search Trends data over a 6-year period, I tested the hypothesis that the rise of GLP-1 agonists (Ozempic) is statistically correlated with a shift in aesthetic preferences—specifically, the return of "thin-centric" fashion trends like Low Rise Jeans and the decline of inclusivity movements like Body Positivity.
